@@ -1,5 +1,9 @@
+package calculator.math.operators;
 
-public class Minus extends Operator{
+import calculator.math.Operand;
+import calculator.math.Operator;
+
+public class Minus implements Operator {
 
    
     public int priority() {

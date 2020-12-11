@@ -1,6 +1,9 @@
+package calculator.math.operators;
 
+import calculator.math.Operand;
+import calculator.math.Operator;
 
-public class ExclamationOperator extends Operator {
+public class ExclamationOperator implements Operator {
 
 
     public int priority() {

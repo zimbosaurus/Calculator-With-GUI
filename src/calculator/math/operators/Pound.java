@@ -1,5 +1,9 @@
+package calculator.math.operators;
 
-public class pound extends Operator{
+import calculator.math.Operand;
+import calculator.math.Operator;
+
+public class Pound implements Operator {
 
 
     public int priority() {

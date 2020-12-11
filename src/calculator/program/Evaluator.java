@@ -1,3 +1,9 @@
+package calculator.program;
+
+import calculator.math.Operand;
+import calculator.math.operators.Hash;
+import calculator.math.Operator;
+import calculator.math.operators.Pound;
 
 import java.util.*;
 
@@ -21,7 +27,7 @@ public class Evaluator {
         // as tokens, too. But, we'll need to remember to filter out spaces.
         this.tokenizer = new StringTokenizer(expression, DELIMITERS, true);
 
-        operatorStack.push(new pound());            //add the pound to the bottem of the stack
+        operatorStack.push(new Pound());            //add the Pound to the bottem of the stack
 
         while (this.tokenizer.hasMoreTokens()) {
             // filter out spaces
@@ -42,8 +48,8 @@ public class Evaluator {
                     Operator newOperator = Hash.FindHash(token);
                     /*
                     if (operatorStack.size() == 2 && operandStack.size() == 1 && operatorStack.peek().priority() != 0) {
-                        Operator oldOpr = operatorStack.pop();
-                        Operand op2 = operandStack.pop();               //this detects negative numbers for example -5 + 6 
+                        calculator.Operator oldOpr = operatorStack.pop();
+                        calculator.math.Operand op2 = operandStack.pop();               //this detects negative numbers for example -5 + 6
                         operandStack.push(oldOpr.execute(op2));         // this will detect negative numbers at the beg of an expression
                     }                                                   // this breaks my code for the parenthises but it handles negatives however when implementing th parenthesis i stopped using this function.
                      */

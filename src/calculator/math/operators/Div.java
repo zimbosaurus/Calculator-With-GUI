@@ -1,5 +1,9 @@
+package calculator.math.operators;
 
-public class Div extends Operator{
+import calculator.math.Operand;
+import calculator.math.Operator;
+
+public class Div implements Operator {
 
    
     public int priority() {
@@ -17,11 +21,8 @@ public class Div extends Operator{
         
     }
     
-    public Operand execute(Operand op1){
-        
-        
+    public Operand execute(Operand op1) {
         return op1;
-        
     }
     
 }

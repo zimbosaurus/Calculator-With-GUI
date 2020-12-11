@@ -1,5 +1,9 @@
+package calculator.math.operators;
 
-public class Mult extends Operator {
+import calculator.math.Operand;
+import calculator.math.Operator;
+
+public class Mult implements Operator {
 
    
     public int priority() {

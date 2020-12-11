@@ -1,5 +1,9 @@
+package calculator.math.operators;
 
-public class openP extends Operator {
+import calculator.math.Operand;
+import calculator.math.Operator;
+
+public class OpenP implements Operator {
 
    
     public int priority() {

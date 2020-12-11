@@ -1,7 +1,11 @@
+package calculator.math.operators;
+
+import calculator.math.Operand;
+import calculator.math.Operator;
 
 import java.lang.*;
 
-public class Bang extends Operator {
+public class Bang implements Operator {
 
     public int priority() {
 
