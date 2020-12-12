@@ -1,13 +1,11 @@
-package calculator.program;
+package calculator.math;
 
-import calculator.math.Operand;
 import calculator.math.operators.Hash;
-import calculator.math.Operator;
 import calculator.math.operators.Pound;
 
 import java.util.*;
 
-public class Evaluator {
+public class ConcreteEvaluator implements Evaluator {
 
     private Stack<Operand> operandStack;
     private Stack<Operator> operatorStack;
@@ -15,11 +13,12 @@ public class Evaluator {
     private StringTokenizer tokenizer;                //create a StringTokenizer
     private static final String DELIMITERS = "+-*^/#!() ";
 
-    public Evaluator() {
+    public ConcreteEvaluator() {
         operandStack = new Stack<>();     //create 2 stacks
         operatorStack = new Stack<>();
     }
 
+    @Override
     public int eval(String expression) {
         String token;
 
@@ -97,6 +96,7 @@ public class Evaluator {
         return finalEvalutation();
     }
 
+    @Override
     public int finalEvalutation() {                 //this function is to evaluate the stacks of operator and operand incase
         //there are still operators / operand in the stacks and return it to eval func.
         while ((!operatorStack.isEmpty()) && operatorStack.peek().priority() != -1) {

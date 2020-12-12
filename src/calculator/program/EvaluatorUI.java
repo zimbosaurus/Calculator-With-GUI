@@ -1,5 +1,8 @@
 package calculator.program;
 
+import calculator.math.ConcreteEvaluator;
+import calculator.math.Evaluator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -174,7 +177,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
         } else if (arg0.getSource() == buttons[14]) {
 
-            Evaluator eval = new Evaluator();
+            Evaluator eval = new ConcreteEvaluator();
             String DisplayAnswer = Integer.toString(eval.eval(txField.getText()));
             txField.setText(txField.getText() + " = " + DisplayAnswer);
 
