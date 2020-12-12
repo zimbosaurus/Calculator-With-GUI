@@ -7,10 +7,9 @@ import java.util.*;
 
 public class ConcreteEvaluator implements Evaluator {
 
-    private Stack<Operand> operandStack;
-    private Stack<Operator> operatorStack;
+    private final Stack<Operand> operandStack;
+    private final Stack<Operator> operatorStack;
 
-    private StringTokenizer tokenizer;                //create a StringTokenizer
     private static final String DELIMITERS = "+-*^/#!() ";
 
     public ConcreteEvaluator() {
@@ -24,13 +23,14 @@ public class ConcreteEvaluator implements Evaluator {
 
         // The 3rd argument is true to indicate that the delimiters should be used
         // as tokens, too. But, we'll need to remember to filter out spaces.
-        this.tokenizer = new StringTokenizer(expression, DELIMITERS, true);
+        //create a StringTokenizer
+        StringTokenizer tokenizer = new StringTokenizer(expression, DELIMITERS, true);
 
         operatorStack.push(new Pound());            //add the Pound to the bottem of the stack
 
-        while (this.tokenizer.hasMoreTokens()) {
+        while (tokenizer.hasMoreTokens()) {
             // filter out spaces
-            if (!(token = this.tokenizer.nextToken()).equals(" ")) {
+            if (!(token = tokenizer.nextToken()).equals(" ")) {
                 // check if token is an operand
                 if (Operand.check(token)) {
                     operandStack.push(new Operand(token));
@@ -52,7 +52,7 @@ public class ConcreteEvaluator implements Evaluator {
                         operandStack.push(oldOpr.execute(op2));         // this will detect negative numbers at the beg of an expression
                     }                                                   // this breaks my code for the parenthises but it handles negatives however when implementing th parenthesis i stopped using this function.
                      */
-                    while ((operatorStack.peek().priority() >= newOperator.priority() || newOperator.priority() == 1 && check == true)) {
+                    while ((operatorStack.peek().priority() >= newOperator.priority() || newOperator.priority() == 1 && check)) {
 
                         if (operandStack.size() == 1 && operatorStack.peek().priority() == 2 && newOperator.priority() != 0) {
                             Operator oldOpr = operatorStack.pop();
@@ -84,7 +84,7 @@ public class ConcreteEvaluator implements Evaluator {
                         }
                     }
 
-                    if (newOperator.priority() != 1 && check == true) {
+                    if (newOperator.priority() != 1 && check) {
                         operatorStack.push(newOperator);
                         System.out.println("The operator stack pushed operator with priority: " + operatorStack.peek().priority());
                     }
@@ -96,8 +96,7 @@ public class ConcreteEvaluator implements Evaluator {
         return finalEvalutation();
     }
 
-    @Override
-    public int finalEvalutation() {                 //this function is to evaluate the stacks of operator and operand incase
+    private int finalEvalutation() {                 //this function is to evaluate the stacks of operator and operand incase
         //there are still operators / operand in the stacks and return it to eval func.
         while ((!operatorStack.isEmpty()) && operatorStack.peek().priority() != -1) {
 
